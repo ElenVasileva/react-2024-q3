@@ -31,9 +31,7 @@ class App extends Component {
       searchValue: searchString,
     });
 
-    const response = await window.fetch(
-      'https://swapi.dev/api/people/?search=' + searchString
-    );
+    const response = await window.fetch('https://swapi.dev/api/people/?search=' + searchString);
 
     const data = await response.json();
     if (response.ok) {
@@ -51,14 +49,8 @@ class App extends Component {
       <>
         <div className='header'>Simple React Application</div>
         <ErrorBoundary hasError={false}>
-          <SearchComponent
-            initialSearchValue={this.state.initialSearchValue}
-            onSearch={this.fetchData}
-          />
-          <DataComponent
-            isLoading={this.state.isLoading}
-            data={this.state.data}
-          />
+          <SearchComponent initialSearchValue={this.state.initialSearchValue} onSearch={this.fetchData} />
+          <DataComponent isLoading={this.state.isLoading} data={this.state.data} />
           <BadComponent></BadComponent>
         </ErrorBoundary>
       </>
