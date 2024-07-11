@@ -47,7 +47,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <div className='header'>Simple React Application</div>
+        <div className="header">Simple React Application</div>
         <ErrorBoundary hasError={false}>
           <SearchComponent initialSearchValue={this.state.initialSearchValue} onSearch={this.fetchData} />
           <DataComponent isLoading={this.state.isLoading} data={this.state.data} />

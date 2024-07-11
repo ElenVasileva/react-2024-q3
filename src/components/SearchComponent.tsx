@@ -24,11 +24,11 @@ class SearchComponent extends Component<{
 
   render() {
     return (
-      <div className='container'>
-        <div className='search card'>
+      <div className="container">
+        <div className="search card">
           <input onChange={(e) => this.handleChange(e.target.value)} value={this.state.searchString} />
         </div>
-        <div className='card'>
+        <div className="card">
           <button onClick={this.handleClick}>Search</button>
         </div>
       </div>
