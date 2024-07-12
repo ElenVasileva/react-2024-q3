@@ -1,39 +1,33 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
-class SearchComponent extends Component<{
+interface SearchComponentProps {
   initialSearchValue: string;
   onSearch: (searchString: string) => void;
-}> {
-  state = {
-    searchString: this.props.initialSearchValue,
+}
+
+function SearchComponent(props: SearchComponentProps) {
+  const [searchString, setSearchString] = useState(props.initialSearchValue);
+
+  const onClick = () => {
+    console.log(`handleClick: '${searchString}'`);
+    props.onSearch(searchString);
   };
 
-  componentDidMount() {
-    this.props.onSearch(this.props.initialSearchValue);
-  }
-
-  handleClick = () => {
-    this.props.onSearch(this.state.searchString);
+  const handleChange = (value: string) => {
+    console.log(`handleChange: '${value}'`);
+    setSearchString(value);
   };
 
-  handleChange = (value: string) => {
-    this.setState({
-      searchString: value,
-    });
-  };
-
-  render() {
-    return (
-      <div className="container">
-        <div className="search card">
-          <input onChange={(e) => this.handleChange(e.target.value)} value={this.state.searchString} />
-        </div>
-        <div className="card">
-          <button onClick={this.handleClick}>Search</button>
-        </div>
+  return (
+    <div className="container">
+      <div className="search card">
+        <input defaultValue={props.initialSearchValue} onChange={(e) => handleChange(e.target.value)} />
       </div>
-    );
-  }
+      <div className="card">
+        <button onClick={onClick}>Search</button>
+      </div>
+    </div>
+  );
 }
 
 export default SearchComponent;

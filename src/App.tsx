@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import SearchComponent from './components/SearchComponent';
 import DataComponent from './components/DataComponent';
@@ -11,51 +11,39 @@ interface Person {
   mass: string;
 }
 
-class App extends Component {
-  constructor(props: {}) {
-    super(props);
-    this.fetchData = this.fetchData.bind(this);
-  }
+function App() {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const initialSearchValue = localStorage.getItem('search') || '';
+  const [searchString, setSearchString] = useState(initialSearchValue);
 
-  state = {
-    initialSearchValue: localStorage.getItem('search') || '',
-    searchValue: '',
-    isLoading: true,
-    data: [],
+  useEffect(() => {
+    console.log(`searchString changed: '${searchString}'`);    
+    setIsLoading(true);
+    fetch('https://swapi.dev/api/people/?search=' + searchString)
+      .then((response) => response.json())
+      .then((json) => {
+        setData(json?.results);
+        setIsLoading(false);
+      });
+    localStorage.setItem('search', searchString);
+  }, [searchString]);
+
+  const onSearch = async (newSearchString: string) => {
+    console.log(`onSearch: '${newSearchString}'`);
+    setSearchString(newSearchString);
   };
 
-  async fetchData(searchString: string) {
-    searchString = searchString.trim();
-    localStorage.setItem('search', searchString);
-    this.setState({
-      searchValue: searchString,
-    });
-
-    const response = await window.fetch('https://swapi.dev/api/people/?search=' + searchString);
-
-    const data = await response.json();
-    if (response.ok) {
-      const list = data?.results;
-
-      this.setState({
-        data: list,
-        isLoading: false,
-      });
-    }
-  }
-
-  render() {
-    return (
-      <>
-        <div className="header">Simple React Application</div>
-        <ErrorBoundary hasError={false}>
-          <SearchComponent initialSearchValue={this.state.initialSearchValue} onSearch={this.fetchData} />
-          <DataComponent isLoading={this.state.isLoading} data={this.state.data} />
-          <BadComponent></BadComponent>
-        </ErrorBoundary>
-      </>
-    );
-  }
+  return (
+    <>
+      <div className="header">Simple React Application</div>
+      <ErrorBoundary hasError={false}>
+        <SearchComponent initialSearchValue={initialSearchValue} onSearch={onSearch} />
+        <DataComponent isLoading={isLoading} data={data} />
+        <BadComponent></BadComponent>
+      </ErrorBoundary>
+    </>
+  );
 }
 
 export default App;
