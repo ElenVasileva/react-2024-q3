@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function BadComponent() {
+const BadComponent = () => {
   const [showBadNode, setShowBadNode] = useState(false);
 
   const handleClick = () => {
@@ -13,6 +13,6 @@ function BadComponent() {
       <button onClick={handleClick}>Throw error</button>
     </>
   );
-}
+};
 
 export default BadComponent;

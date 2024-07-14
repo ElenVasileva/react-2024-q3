@@ -8,7 +8,7 @@ export const loader: LoaderFunction = async ({ params }: LoaderFunctionArgs) => 
   return item;
 };
 
-function Item() {
+const Item = () => {
   const navigation = useNavigation();
   const item = useLoaderData() as Person;
   return (
@@ -29,6 +29,6 @@ function Item() {
       )}
     </>
   );
-}
+};
 
 export default Item;

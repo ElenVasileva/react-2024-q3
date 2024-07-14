@@ -1,9 +1,13 @@
 import { Person } from './App';
+interface PageData {
+  results: Person[];
+  count: number;
+}
 
 export const getItems = async (page: number, searchString: string) => {
-  const response = await fetch(`https://swapi.dev/api/people/?search=${searchString}&page=${page}`)
+  const response = await fetch(`https://swapi.dev/api/people/?search=${searchString}&page=${page + 1}`)
     .then((response) => response.json())
-    .then(({ results }: { results: Person[] }) => results);
+    .then((result: PageData) => result);
 
   return response;
 };

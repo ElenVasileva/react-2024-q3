@@ -5,7 +5,7 @@ interface SearchComponentProps {
   onSearch: (searchString: string) => void;
 }
 
-function SearchComponent(props: SearchComponentProps) {
+const SearchComponent = (props: SearchComponentProps) => {
   const [searchString, setSearchString] = useState(props.initialSearchValue);
 
   const onClick = () => {
@@ -28,6 +28,6 @@ function SearchComponent(props: SearchComponentProps) {
       </div>
     </div>
   );
-}
+};
 
 export default SearchComponent;

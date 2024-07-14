@@ -1,13 +1,7 @@
-import { LoaderFunction, LoaderFunctionArgs, NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { Person } from '../App';
-import { getItems } from '../api';
 
-export const loader: LoaderFunction = async ({ params }: LoaderFunctionArgs) => {
-  const item = await getItems(+(params.page || 1), localStorage.getItem('search') || '');
-  return item;
-};
-
-function PageComponent({ data }: { data: Person[] }) {
+const PageComponent = ({ data }: { data: Person[] }) => {
   const listItems = data.map((person: Person) => {
     const urlParts = person.url.replace(/\/$/, '').split('/');
     return (
@@ -16,12 +10,14 @@ function PageComponent({ data }: { data: Person[] }) {
       </li>
     );
   });
+  const itemsView = listItems.length ? <ul>{listItems}</ul> : <div>No data</div>;
+
   return (
     <>
-      <ul>{listItems}</ul>
+      <div className="items-view">{itemsView}</div>
       <Outlet />
     </>
   );
-}
+};
 
 export default PageComponent;
