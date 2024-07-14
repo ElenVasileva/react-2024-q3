@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import SearchComponent from './components/SearchComponent';
-import PageComponent from './components/PageComponent';
+import CardListComponent from './components/CardListComponent';
 import ErrorBoundary from './components/ErrorBoundary';
 import BadComponent from './components/BadComponent';
 import { getItems as getItemsApi } from './api';
@@ -65,7 +65,7 @@ const App = () => {
         </div>
         <SearchComponent initialSearchValue={initialSearchValue} onSearch={onSearch} />
         <div id="page" className="page">
-          <PageComponent data={data} />
+          <CardListComponent data={data} />
         </div>
         <PaginationComponent entriesCount={entriesCount} selectedPage={currentPage} onPageChange={onPageChange}></PaginationComponent>
       </ErrorBoundary>

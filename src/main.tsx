@@ -4,7 +4,7 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import ErrorPage from './ErrorPage';
-import Item, { loader as loaderItem } from './routes/Item';
+import DetailedItem, { loader as loaderItem } from './routes/DetailedItem';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/:itemId',
-        element: <Item />,
+        element: <DetailedItem />,
         loader: loaderItem,
       },
     ],
