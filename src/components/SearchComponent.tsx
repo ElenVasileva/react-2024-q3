@@ -21,7 +21,7 @@ function SearchComponent(props: SearchComponentProps) {
   return (
     <div className="container">
       <div className="search card">
-        <input defaultValue={props.initialSearchValue} onChange={(e) => handleChange(e.target.value)} />
+        <input defaultValue={props.initialSearchValue} onChange={(e) => handleChange(e.target.value)} autoFocus />
       </div>
       <div className="card">
         <button onClick={onClick}>Search</button>
