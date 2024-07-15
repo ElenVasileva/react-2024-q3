@@ -1,20 +1,18 @@
-import React from 'react';
+import { useState } from 'react';
 
-class BadComponent extends React.Component {
-  state = { showBadNode: false };
+const BadComponent = () => {
+  const [showBadNode, setShowBadNode] = useState(false);
 
-  handleClick = () => {
-    this.setState({ showBadNode: true });
+  const handleClick = () => {
+    setShowBadNode(true);
   };
 
-  render() {
-    if (this.state.showBadNode) throw new Error('Test error');
-    return (
-      <>
-        <button onClick={this.handleClick}>Throw error</button>
-      </>
-    );
-  }
-}
+  if (showBadNode) throw new Error('Test error');
+  return (
+    <>
+      <button onClick={handleClick}>Throw error</button>
+    </>
+  );
+};
 
 export default BadComponent;

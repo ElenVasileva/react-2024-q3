@@ -1,62 +1,77 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import SearchComponent from './components/SearchComponent';
-import DataComponent from './components/DataComponent';
+import CardListComponent from './components/CardListComponent';
 import ErrorBoundary from './components/ErrorBoundary';
 import BadComponent from './components/BadComponent';
+import { getItems as getItemsApi } from './api';
+import PaginationComponent from './components/PaginationComponent';
+import { useSearchParams } from 'react-router-dom';
 
 interface Person {
   name: string;
   height: string;
   mass: string;
+  url: string;
+  gender: string;
+  hair_color: string;
+  skin_color: string;
 }
 
-class App extends Component {
-  constructor(props: {}) {
-    super(props);
-    this.fetchData = this.fetchData.bind(this);
-  }
+const App = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  state = {
-    initialSearchValue: localStorage.getItem('search') || '',
-    searchValue: '',
-    isLoading: true,
-    data: [],
+  const [data, setData] = useState<Person[]>([]);
+  const initialSearchValue = localStorage.getItem('search') || '';
+  const [searchString, setSearchString] = useState(initialSearchValue);
+  const [entriesCount, setEntriesCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(+(searchParams.get('page') || 0));
+
+  const getItems = () => {
+    getItemsApi(currentPage, searchString).then((data) => {
+      setData(data.results);
+      setEntriesCount(data.count);
+    });
   };
 
-  async fetchData(searchString: string) {
-    searchString = searchString.trim();
+  useEffect(() => {
+    console.log(`searchString changed: '${searchString}'`);
+    getItems();
     localStorage.setItem('search', searchString);
-    this.setState({
-      searchValue: searchString,
-    });
+  }, [searchString]);
 
-    const response = await window.fetch('https://swapi.dev/api/people/?search=' + searchString);
+  useEffect(() => {
+    console.log(`currentPage changed: '${currentPage}'`);
+    setSearchParams('page=' + currentPage);
+    getItems();
+  }, [currentPage]);
 
-    const data = await response.json();
-    if (response.ok) {
-      const list = data?.results;
+  const onSearch = async (newSearchString: string) => {
+    console.log(`onSearch: '${newSearchString}'`);
+    setCurrentPage(0);
+    setSearchString(newSearchString);
+  };
+  const onPageChange = async (newPageNumber: number) => {
+    console.log(`onSearch: '${newPageNumber}'`);
+    setCurrentPage(newPageNumber);
+  };
 
-      this.setState({
-        data: list,
-        isLoading: false,
-      });
-    }
-  }
-
-  render() {
-    return (
-      <>
-        <div className='header'>Simple React Application</div>
-        <ErrorBoundary hasError={false}>
-          <SearchComponent initialSearchValue={this.state.initialSearchValue} onSearch={this.fetchData} />
-          <DataComponent isLoading={this.state.isLoading} data={this.state.data} />
+  return (
+    <>
+      <ErrorBoundary hasError={false}>
+        <div className="header">
+          <div className="app-name">Simple React Application</div>
           <BadComponent></BadComponent>
-        </ErrorBoundary>
-      </>
-    );
-  }
-}
+        </div>
+        <SearchComponent initialSearchValue={initialSearchValue} onSearch={onSearch} />
+        <div id="page" className="page">
+          <CardListComponent data={data} />
+        </div>
+        <PaginationComponent entriesCount={entriesCount} selectedPage={currentPage} onPageChange={onPageChange}></PaginationComponent>
+      </ErrorBoundary>
+    </>
+  );
+};
 
 export default App;
 export type { Person };

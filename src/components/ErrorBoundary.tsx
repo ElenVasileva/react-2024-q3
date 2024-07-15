@@ -7,7 +7,8 @@ class ErrorBoundary extends React.Component<{ children: ReactNode; hasError: boo
 
   state = { hasError: false };
 
-  static getDerivedStateFromError(_error: Error) {
+  static getDerivedStateFromError(error: Error) {
+    console.log(error);
     return { hasError: true };
   }
 
