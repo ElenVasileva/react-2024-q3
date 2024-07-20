@@ -7,16 +7,7 @@ import BadComponent from './components/BadComponent';
 import { getItems as getItemsApi } from './api';
 import PaginationComponent from './components/PaginationComponent';
 import { useSearchParams } from 'react-router-dom';
-
-interface Person {
-  name: string;
-  height: string;
-  mass: string;
-  url: string;
-  gender: string;
-  hair_color: string;
-  skin_color: string;
-}
+import Person from './types/Person';
 
 const App = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -25,7 +16,7 @@ const App = () => {
   const initialSearchValue = localStorage.getItem('search') || '';
   const [searchString, setSearchString] = useState(initialSearchValue);
   const [entriesCount, setEntriesCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(+(searchParams.get('page') || 0));
+  const [currentPage, setCurrentPage] = useState(+(searchParams.get('page') || 1));
 
   const getItems = () => {
     getItemsApi(currentPage, searchString).then((data) => {
@@ -48,7 +39,7 @@ const App = () => {
 
   const onSearch = async (newSearchString: string) => {
     console.log(`onSearch: '${newSearchString}'`);
-    setCurrentPage(0);
+    setCurrentPage(1);
     setSearchString(newSearchString);
   };
   const onPageChange = async (newPageNumber: number) => {
@@ -74,4 +65,3 @@ const App = () => {
 };
 
 export default App;
-export type { Person };

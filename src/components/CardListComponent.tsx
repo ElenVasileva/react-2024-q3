@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import { Person } from '../App';
 import ItemComponent from './ItemComponent';
+import Person from '../types/Person';
 
 const CardListComponent = ({ data }: { data: Person[] }) => {
   const listItems = data.map((person: Person) => {

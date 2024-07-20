@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Person } from '../App';
+import Person from '../types/Person';
 
 const ItemComponent = ({ person }: { person: Person }) => {
   const urlParts = person.url.replace(/\/$/, '').split('/');

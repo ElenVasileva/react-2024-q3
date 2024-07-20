@@ -1,12 +1,6 @@
-import { LoaderFunction, LoaderFunctionArgs, NavLink, useLoaderData, useNavigation } from 'react-router-dom';
-import { getItem } from '../api';
-import { Person } from '../App';
+import { NavLink, useLoaderData, useNavigation } from 'react-router-dom';
 import GlobalSpinner from '../components/GlobalSpinner';
-
-export const loader: LoaderFunction = async ({ params }: LoaderFunctionArgs) => {
-  const item = await getItem(+(params.itemId || 1));
-  return item;
-};
+import Person from '../types/Person';
 
 const DetailedItem = () => {
   const navigation = useNavigation();

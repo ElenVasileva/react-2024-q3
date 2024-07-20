@@ -12,11 +12,11 @@ const PaginationComponent = (props: PaginationComponentProps) => {
   };
 
   const pageLinks = [];
-  for (let i = 0; i < pageCount; i++) {
+  for (let i = 1; i <= pageCount; i++) {
     const className = props.selectedPage === i ? 'page-button selected' : 'page-button';
     pageLinks.push(
       <button key={i} className={className} onClick={() => onClick(i)}>
-        {i + 1}
+        {i}
       </button>,
     );
   }

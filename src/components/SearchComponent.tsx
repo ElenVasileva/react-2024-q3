@@ -9,12 +9,10 @@ const SearchComponent = (props: SearchComponentProps) => {
   const [searchString, setSearchString] = useState(props.initialSearchValue);
 
   const onClick = () => {
-    console.log(`handleClick: '${searchString}'`);
     props.onSearch(searchString);
   };
 
   const handleChange = (value: string) => {
-    console.log(`handleChange: '${value}'`);
     setSearchString(value);
   };
 
