@@ -8,8 +8,10 @@ import { getItems as getItemsApi } from './api';
 import PaginationComponent from './components/PaginationComponent';
 import { useSearchParams } from 'react-router-dom';
 import Person from './types/Person';
+import { ThemeContext } from './themes/ThemeContext';
 
 const App = () => {
+  const [theme, setTheme] = useState('light');
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [data, setData] = useState<Person[]>([]);
@@ -46,20 +48,35 @@ const App = () => {
     console.log(`onSearch: '${newPageNumber}'`);
     setCurrentPage(newPageNumber);
   };
+  const className = `main-container ${theme}`;
 
   return (
     <>
-      <ErrorBoundary hasError={false}>
-        <div className="header">
-          <div className="app-name">Simple React Application</div>
-          <BadComponent></BadComponent>
-        </div>
-        <SearchComponent initialSearchValue={initialSearchValue} onSearch={onSearch} />
-        <div id="page" className="page">
-          <CardListComponent data={data} />
-        </div>
-        <PaginationComponent entriesCount={entriesCount} selectedPage={currentPage} onPageChange={onPageChange}></PaginationComponent>
-      </ErrorBoundary>
+      <div className={className}>
+        <ErrorBoundary hasError={false}>
+          <ThemeContext.Provider value={theme}>
+            <div className="header">
+              <div className="app-name">Simple React Application</div>
+              <BadComponent></BadComponent>
+            </div>
+            <label>
+              <input
+                type="checkbox"
+                checked={theme === 'dark'}
+                onChange={(e) => {
+                  setTheme(e.target.checked ? 'dark' : 'light');
+                }}
+              />
+              Use dark mode
+            </label>
+            <SearchComponent initialSearchValue={initialSearchValue} onSearch={onSearch} />
+            <div id="page" className="page">
+              <CardListComponent data={data} />
+            </div>
+            <PaginationComponent entriesCount={entriesCount} selectedPage={currentPage} onPageChange={onPageChange}></PaginationComponent>
+          </ThemeContext.Provider>
+        </ErrorBoundary>
+      </div>
     </>
   );
 };

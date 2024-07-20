@@ -2,7 +2,7 @@ import PageData from './types/PageData';
 import Person from './types/Person';
 
 export const getItems = async (page: number, searchString: string) => {
-  const response = await fetch(`https://swapi.dev/api/people/?search=${searchString}&page=${page + 1}`)
+  const response = await fetch(`https://swapi.dev/api/people/?search=${searchString}&page=${page}`)
     .then((response) => response.json())
     .then((result: PageData) => result);
 

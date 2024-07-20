@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { ThemeContext } from '../themes/ThemeContext';
+
 interface PaginationComponentProps {
   entriesCount: number;
   selectedPage: number;
@@ -5,6 +8,8 @@ interface PaginationComponentProps {
 }
 
 const PaginationComponent = (props: PaginationComponentProps) => {
+  const theme = useContext(ThemeContext);
+
   const pageCount = Math.floor(props.entriesCount / 10) + 1;
 
   const onClick = (newPageNumber: number) => {
@@ -13,7 +18,7 @@ const PaginationComponent = (props: PaginationComponentProps) => {
 
   const pageLinks = [];
   for (let i = 1; i <= pageCount; i++) {
-    const className = props.selectedPage === i ? 'page-button selected' : 'page-button';
+    const className =  `page-button ${props.selectedPage === i ?'selected':''} button-${theme}`;
     pageLinks.push(
       <button key={i} className={className} onClick={() => onClick(i)}>
         {i}
