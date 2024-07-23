@@ -28,24 +28,20 @@ const App = () => {
   };
 
   useEffect(() => {
-    console.log(`searchString changed: '${searchString}'`);
     getItems();
     localStorage.setItem('search', searchString);
   }, [searchString]);
 
   useEffect(() => {
-    console.log(`currentPage changed: '${currentPage}'`);
     setSearchParams('page=' + currentPage);
     getItems();
   }, [currentPage]);
 
   const onSearch = async (newSearchString: string) => {
-    console.log(`onSearch: '${newSearchString}'`);
     setCurrentPage(1);
     setSearchString(newSearchString);
   };
   const onPageChange = async (newPageNumber: number) => {
-    console.log(`onSearch: '${newPageNumber}'`);
     setCurrentPage(newPageNumber);
   };
   const className = `main-container ${theme}`;

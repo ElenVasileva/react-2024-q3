@@ -7,7 +7,7 @@ export default interface PageData {
 
 export const getFakePageData = () => {
   return {
-    results: [getFakePerson('name'), getFakePerson('2')],
+    results: [getFakePerson('name', 1), getFakePerson('2', 2)],
     count: 2,
   };
 };

@@ -18,7 +18,7 @@ const PaginationComponent = (props: PaginationComponentProps) => {
 
   const pageLinks = [];
   for (let i = 1; i <= pageCount; i++) {
-    const className =  `page-button ${props.selectedPage === i ?'selected':''} button-${theme}`;
+    const className = `page-button ${props.selectedPage === i ? 'selected' : ''} button-${theme}`;
     pageLinks.push(
       <button key={i} className={className} onClick={() => onClick(i)}>
         {i}

@@ -8,12 +8,12 @@ export default interface Person {
   skin_color: string;
 }
 
-export const getFakePerson = (name: string) => {
+export const getFakePerson = (name: string, id: number) => {
   return {
     name: name,
     height: '',
     mass: '',
-    url: '',
+    url: `/${id}`,
     gender: '',
     hair_color: '',
     skin_color: '',
