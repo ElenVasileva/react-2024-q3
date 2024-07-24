@@ -1,10 +1,7 @@
-import { useContext, useState } from 'react';
-import { ThemeContext } from '../themes/ThemeContext';
+import { useState } from 'react';
+import ButtonComponent from './ButtonComponent/ButtonComponent';
 
 const BadComponent = () => {
-  const theme = useContext(ThemeContext);
-  const buttonClass = 'button-' + theme;
-
   const [showBadNode, setShowBadNode] = useState(false);
 
   const handleClick = () => {
@@ -14,9 +11,7 @@ const BadComponent = () => {
   if (showBadNode) throw new Error('Test error');
   return (
     <>
-      <button className={buttonClass} onClick={handleClick}>
-        Throw error
-      </button>
+      <ButtonComponent onClick={handleClick}>Throw error</ButtonComponent>
     </>
   );
 };

@@ -16,9 +16,9 @@ const ItemComponent = ({ person }: { person: Person }) => {
       <label className="item-label">
         <input
           type="checkbox"
-          checked={selectedItems.indexOf(id) >= 0}
+          checked={selectedItems.indexOf(person) >= 0}
           onChange={() => {
-            selectedItems.indexOf(id) >= 0 ? dispatch(removeItem(id)) : dispatch(addItem(id));
+            selectedItems.indexOf(person) >= 0 ? dispatch(removeItem(person)) : dispatch(addItem(person));
           }}
         />
         <li className="item">

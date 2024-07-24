@@ -9,9 +9,10 @@ import PaginationComponent from './components/PaginationComponent';
 import { useSearchParams } from 'react-router-dom';
 import Person from './types/Person';
 import { ThemeContext } from './themes/ThemeContext';
+import FlyoutComponent from './components/FlyoutComponent/FlyoutComponent';
 
 const App = () => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [data, setData] = useState<Person[]>([]);
@@ -49,29 +50,32 @@ const App = () => {
   return (
     <>
       <div className={className}>
-        <ErrorBoundary hasError={false}>
-          <ThemeContext.Provider value={theme}>
-            <div className="header">
-              <div className="app-name">Simple React Application</div>
-              <BadComponent></BadComponent>
-            </div>
-            <label>
-              <input
-                type="checkbox"
-                checked={theme === 'dark'}
-                onChange={(e) => {
-                  setTheme(e.target.checked ? 'dark' : 'light');
-                }}
-              />
-              Use dark mode
-            </label>
-            <SearchComponent initialSearchValue={initialSearchValue} onSearch={onSearch} />
-            <div id="page" className="page">
-              <CardListComponent data={data} />
-            </div>
-            <PaginationComponent entriesCount={entriesCount} selectedPage={currentPage} onPageChange={onPageChange}></PaginationComponent>
-          </ThemeContext.Provider>
-        </ErrorBoundary>
+        <div>
+          <ErrorBoundary hasError={false}>
+            <ThemeContext.Provider value={theme}>
+              <div className="header">
+                <div className="app-name">Simple React Application</div>
+                <BadComponent></BadComponent>
+              </div>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={theme === 'dark'}
+                  onChange={(e) => {
+                    setTheme(e.target.checked ? 'dark' : 'light');
+                  }}
+                />
+                Use dark mode
+              </label>
+              <SearchComponent initialSearchValue={initialSearchValue} onSearch={onSearch} />
+              <PaginationComponent entriesCount={entriesCount} selectedPage={currentPage} onPageChange={onPageChange}></PaginationComponent>
+              <div id="page" className="page">
+                <CardListComponent data={data} />
+              </div>
+              <FlyoutComponent />
+            </ThemeContext.Provider>
+          </ErrorBoundary>
+        </div>
       </div>
     </>
   );

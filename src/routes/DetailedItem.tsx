@@ -1,5 +1,5 @@
 import { NavLink, useLoaderData, useNavigation } from 'react-router-dom';
-import GlobalSpinner from '../components/GlobalSpinner';
+import GlobalSpinner from '../components/GlobalSpinner/GlobalSpinner';
 import Person from '../types/Person';
 
 const DetailedItem = () => {

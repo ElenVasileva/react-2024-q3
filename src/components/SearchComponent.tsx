@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { ThemeContext } from '../themes/ThemeContext';
+import ButtonComponent from './ButtonComponent/ButtonComponent';
 
 interface SearchComponentProps {
   initialSearchValue: string;
@@ -8,7 +9,6 @@ interface SearchComponentProps {
 
 const SearchComponent = (props: SearchComponentProps) => {
   const theme = useContext(ThemeContext);
-  const buttonClass = 'button-' + theme;
   const inputClass = 'input-' + theme;
 
   const [searchString, setSearchString] = useState(props.initialSearchValue);
@@ -26,9 +26,7 @@ const SearchComponent = (props: SearchComponentProps) => {
         <input className={inputClass} defaultValue={props.initialSearchValue} onChange={(e) => handleChange(e.target.value)} autoFocus />
       </div>
       <div className="card">
-        <button className={buttonClass} onClick={onClick}>
-          Search
-        </button>
+        <ButtonComponent onClick={onClick}>Search</ButtonComponent>
       </div>
     </div>
   );
