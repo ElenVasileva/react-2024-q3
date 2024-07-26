@@ -1,34 +1,12 @@
-import { LoaderFunction, LoaderFunctionArgs, NavLink, useLoaderData, useNavigation } from 'react-router-dom';
-import { getItem } from '../api';
-import { Person } from '../App';
-import GlobalSpinner from '../components/GlobalSpinner';
-
-export const loader: LoaderFunction = async ({ params }: LoaderFunctionArgs) => {
-  const item = await getItem(+(params.itemId || 1));
-  return item;
-};
+import { useParams } from 'react-router-dom';
+import GlobalSpinner from '../components/GlobalSpinner/GlobalSpinner';
+import { personApi } from '../services/person';
+import DetailedItemComponent from '../components/DetailedItemComponent/DetailedItemComponent';
 
 const DetailedItem = () => {
-  const navigation = useNavigation();
-  const item = useLoaderData() as Person;
-  return (
-    <>
-      {navigation.state === 'loading' && <GlobalSpinner />}
-      {navigation.state !== 'loading' && (
-        <div id="details" className="details">
-          <div className="details-header">
-            {item.name}
-            <NavLink to={'/'}>x</NavLink>
-          </div>
-          <div>Height: {item.height}</div>
-          <div>Weight: {item.mass}</div>
-          <div>Gender: {item.gender}</div>
-          <div>Hair color: {item.hair_color}</div>
-          <div>Skin color: {item.skin_color}</div>
-        </div>
-      )}
-    </>
-  );
+  const { itemId } = useParams();
+  const { data, error, isFetching } = personApi.useGetPersonByIdQuery(itemId || '');
+  return <>{isFetching ? <GlobalSpinner /> : error ? JSON.stringify(error) : !!data && <DetailedItemComponent person={data}></DetailedItemComponent>}</>;
 };
 
 export default DetailedItem;

@@ -4,7 +4,9 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import ErrorPage from './ErrorPage';
-import DetailedItem, { loader as loaderItem } from './routes/DetailedItem';
+import DetailedItem from './routes/DetailedItem';
+import { store } from './store';
+import { Provider } from 'react-redux';
 
 const router = createBrowserRouter([
   {
@@ -15,14 +17,15 @@ const router = createBrowserRouter([
       {
         path: '/:itemId',
         element: <DetailedItem />,
-        loader: loaderItem,
       },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </Provider>,
 );

@@ -1,3 +1,5 @@
+import ButtonComponent from './ButtonComponent/ButtonComponent';
+
 interface PaginationComponentProps {
   entriesCount: number;
   selectedPage: number;
@@ -12,12 +14,12 @@ const PaginationComponent = (props: PaginationComponentProps) => {
   };
 
   const pageLinks = [];
-  for (let i = 0; i < pageCount; i++) {
-    const className = props.selectedPage === i ? 'page-button selected' : 'page-button';
+  for (let i = 1; i <= pageCount; i++) {
+    const className = `page-button ${props.selectedPage === i ? 'selected' : ''}`;
     pageLinks.push(
-      <button key={i} className={className} onClick={() => onClick(i)}>
-        {i + 1}
-      </button>,
+      <ButtonComponent key={i} className={className} onClick={() => onClick(i)}>
+        {i}
+      </ButtonComponent>,
     );
   }
   return <>{!!props.entriesCount && <div className="container">{pageLinks}</div>}</>;

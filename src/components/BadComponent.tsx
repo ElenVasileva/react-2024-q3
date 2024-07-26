@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ButtonComponent from './ButtonComponent/ButtonComponent';
 
 const BadComponent = () => {
   const [showBadNode, setShowBadNode] = useState(false);
@@ -10,7 +11,7 @@ const BadComponent = () => {
   if (showBadNode) throw new Error('Test error');
   return (
     <>
-      <button onClick={handleClick}>Throw error</button>
+      <ButtonComponent onClick={handleClick}>Throw error</ButtonComponent>
     </>
   );
 };
