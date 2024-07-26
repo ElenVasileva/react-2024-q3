@@ -1,21 +1,18 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import DetailedItem from './DetailedItem';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { getFakePerson } from '../../types/Person';
+import DetailedItemComponent from './DetailedItemComponent';
+
+const person = getFakePerson('name', 1);
 
 test('DetailedItem renders', async () => {
-  const routes = [
+  const router = createMemoryRouter([
     {
-      path: '/:itemId',
-      element: <DetailedItem />,
-      loader: () => ({}),
+      path: '*',
+      element: <DetailedItemComponent person={person} />,
     },
-  ];
-
-  const router = createMemoryRouter(routes, {
-    initialEntries: ['/123'],
-    initialIndex: 1,
-  });
+  ]);
   render(<RouterProvider router={router} />);
   const el = await waitFor(() => screen.getByText(/Height/i));
   expect(el).toBeInTheDocument();

@@ -2,7 +2,7 @@ import './FlyoutComponent.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { unselectAll } from '../../features/selectedItemsSlice';
+import { unselectAll } from '../../features/checkedItemsSlice';
 import ButtonComponent from '../ButtonComponent/ButtonComponent';
 import { useContext } from 'react';
 import { ThemeContext } from '../../themes/ThemeContext';
@@ -10,13 +10,13 @@ import Person from '../../types/Person';
 
 const FlyoutComponent = () => {
   const theme = useContext(ThemeContext);
-  const selectedItems = useSelector((state: RootState) => state.selectedItems.value);
+  const checkedItems = useSelector((state: RootState) => state.checkedItems.value);
   const dispatch = useDispatch();
 
-  const createFile = (selectedItems: Person[]) => {
+  const createFile = (checkedItems: Person[]) => {
     const separator = ',';
     let dataString = `Name${separator}Gender${separator}Height\n`;
-    dataString += selectedItems
+    dataString += checkedItems
       .map((person: Person) => {
         return `${person.name}${separator}${person.gender}${separator}${person.height}`;
       })
@@ -26,9 +26,9 @@ const FlyoutComponent = () => {
 
   return (
     <div className={`flyout flyout-${theme}`}>
-      <div className={selectedItems.length ? 'shown' : ''}>
+      <div className={checkedItems.length ? 'shown' : ''}>
         <div className="flyout-content">
-          {selectedItems.length} items selected
+          {checkedItems.length} items selected
           <ButtonComponent
             onClick={() => {
               dispatch(unselectAll());
@@ -36,7 +36,7 @@ const FlyoutComponent = () => {
           >
             Unselect all
           </ButtonComponent>
-          <a href={createFile(selectedItems)} download={`${selectedItems.length}_persons.csv`} className={`button-${theme}`}>
+          <a href={createFile(checkedItems)} download={`${checkedItems.length}_persons.csv`} className={`button-${theme}`}>
             Download
           </a>
         </div>

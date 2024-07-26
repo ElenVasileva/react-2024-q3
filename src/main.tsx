@@ -5,7 +5,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import ErrorPage from './ErrorPage';
 import DetailedItem from './routes/DetailedItem';
-import { loader as loaderItem } from './routes/loader';
 import { store } from './store';
 import { Provider } from 'react-redux';
 
@@ -18,7 +17,6 @@ const router = createBrowserRouter([
       {
         path: '/:itemId',
         element: <DetailedItem />,
-        loader: loaderItem,
       },
     ],
   },

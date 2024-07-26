@@ -5,7 +5,7 @@
 .main-container {
   height: 100%;
   display: flex;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .main-container > div {
   margin: 0 auto;

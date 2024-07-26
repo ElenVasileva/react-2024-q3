@@ -1,41 +1,29 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import SearchComponent from './components/SearchComponent';
-import CardListComponent from './components/CardListComponent';
 import ErrorBoundary from './components/ErrorBoundary';
 import BadComponent from './components/BadComponent';
-import { getItems as getItemsApi } from './api';
 import PaginationComponent from './components/PaginationComponent';
 import { useSearchParams } from 'react-router-dom';
-import Person from './types/Person';
 import { ThemeContext } from './themes/ThemeContext';
 import FlyoutComponent from './components/FlyoutComponent/FlyoutComponent';
+import ResultComponent from './components/ResultComponent';
 
 const App = () => {
   const [theme, setTheme] = useState('dark');
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [data, setData] = useState<Person[]>([]);
   const initialSearchValue = localStorage.getItem('search') || '';
   const [searchString, setSearchString] = useState(initialSearchValue);
   const [entriesCount, setEntriesCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(+(searchParams.get('page') || 1));
 
-  const getItems = () => {
-    getItemsApi(currentPage, searchString).then((data) => {
-      setData(data.results);
-      setEntriesCount(data.count);
-    });
-  };
-
   useEffect(() => {
-    getItems();
     localStorage.setItem('search', searchString);
   }, [searchString]);
 
   useEffect(() => {
     setSearchParams('page=' + currentPage);
-    getItems();
   }, [currentPage]);
 
   const onSearch = async (newSearchString: string) => {
@@ -46,7 +34,9 @@ const App = () => {
     setCurrentPage(newPageNumber);
   };
   const className = `main-container ${theme}`;
-
+  const onCountChanged = (newCount: number) => {
+    setEntriesCount(newCount);
+  };
   return (
     <>
       <div className={className}>
@@ -55,7 +45,7 @@ const App = () => {
             <ThemeContext.Provider value={theme}>
               <div className="header">
                 <div className="app-name">Simple React Application</div>
-                <BadComponent></BadComponent>
+                <BadComponent />
               </div>
               <label>
                 <input
@@ -68,10 +58,8 @@ const App = () => {
                 Use dark mode
               </label>
               <SearchComponent initialSearchValue={initialSearchValue} onSearch={onSearch} />
-              <PaginationComponent entriesCount={entriesCount} selectedPage={currentPage} onPageChange={onPageChange}></PaginationComponent>
-              <div id="page" className="page">
-                <CardListComponent data={data} />
-              </div>
+              <PaginationComponent entriesCount={entriesCount} selectedPage={currentPage} onPageChange={onPageChange} />
+              <ResultComponent page={currentPage} search={searchString} onCountChanged={onCountChanged} />
               <FlyoutComponent />
             </ThemeContext.Provider>
           </ErrorBoundary>

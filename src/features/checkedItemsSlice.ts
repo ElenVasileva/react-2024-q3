@@ -2,16 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import Person from '../types/Person';
 
-export interface SelectedItemsState {
+export interface CheckedItemsState {
   value: Person[];
 }
 
-const initialState: SelectedItemsState = {
+const initialState: CheckedItemsState = {
   value: [],
 };
 
-export const selectedItemsSlice = createSlice({
-  name: 'selectedItems',
+export const checkedItemsSlice = createSlice({
+  name: 'checkedItems',
   initialState,
   reducers: {
     addItem: (state, action: PayloadAction<Person>) => {
@@ -26,6 +26,6 @@ export const selectedItemsSlice = createSlice({
   },
 });
 
-export const { addItem, removeItem, unselectAll } = selectedItemsSlice.actions;
+export const { addItem, removeItem, unselectAll } = checkedItemsSlice.actions;
 
-export default selectedItemsSlice.reducer;
+export default checkedItemsSlice.reducer;

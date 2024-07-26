@@ -1,11 +1,14 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useSearchParams } from 'react-router-dom';
 import Person from '../types/Person';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { addItem, removeItem } from '../features/selectedItemsSlice';
+import { addItem, removeItem } from '../features/checkedItemsSlice';
 
 const ItemComponent = ({ person }: { person: Person }) => {
-  const selectedItems = useSelector((state: RootState) => state.selectedItems.value);
+  const [searchParams] = useSearchParams();
+  const pageNumber = +(searchParams.get('page') || 1);
+
+  const checkedItems = useSelector((state: RootState) => state.checkedItems.value);
   const dispatch = useDispatch();
 
   const urlParts = person.url.replace(/\/$/, '').split('/');
@@ -16,13 +19,13 @@ const ItemComponent = ({ person }: { person: Person }) => {
       <label className="item-label">
         <input
           type="checkbox"
-          checked={selectedItems.indexOf(person) >= 0}
+          checked={checkedItems.indexOf(person) >= 0}
           onChange={() => {
-            selectedItems.indexOf(person) >= 0 ? dispatch(removeItem(person)) : dispatch(addItem(person));
+            checkedItems.indexOf(person) >= 0 ? dispatch(removeItem(person)) : dispatch(addItem(person));
           }}
         />
         <li className="item">
-          <NavLink to={id}>{person.name}</NavLink>
+          <NavLink to={`${id}?page=${pageNumber}`}>{person.name}</NavLink>
         </li>
       </label>
     </>

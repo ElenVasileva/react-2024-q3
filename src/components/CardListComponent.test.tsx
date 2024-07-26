@@ -4,8 +4,7 @@ import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { getFakePerson } from '../types/Person';
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import selectedItemsReducer from '../features/selectedItemsSlice';
+import { store } from '../store';
 
 test('CardList displays an appropriate message if no cards are present', () => {
   render(<CardListComponent data={[]} />);
@@ -16,9 +15,6 @@ test('CardList displays an appropriate message if no cards are present', () => {
 const personList = [getFakePerson('name', 1), getFakePerson('2', 2)];
 
 test('CardList renders the specified number of cards', async () => {
-  const store = configureStore({
-    reducer: { selectedItems: selectedItemsReducer },
-  });
   render(
     <Provider store={store}>
       <MemoryRouter>
@@ -31,9 +27,6 @@ test('CardList renders the specified number of cards', async () => {
 });
 
 test('Check boxes could be clicked', async () => {
-  const store = configureStore({
-    reducer: { selectedItems: selectedItemsReducer },
-  });
   render(
     <Provider store={store}>
       <MemoryRouter>
