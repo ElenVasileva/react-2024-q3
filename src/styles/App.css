@@ -1,0 +1,111 @@
+#root {
+  text-align: center;
+  height: 100%;
+}
+.main-container {
+  height: 100%;
+  display: flex;
+  overflow-y: auto;
+}
+.main-container > div {
+  margin: 0 auto;
+}
+.card {
+  padding: 2em;
+}
+
+.app-name {
+  font-size: 30px;
+  text-align: left;
+  margin: 0 40px;
+}
+
+.search input {
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+}
+
+.container {
+  display: flex;
+}
+
+li.item {
+  text-align: left;
+}
+
+.page {
+  display: flex;
+  padding: 20px;
+}
+
+.active {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.items-view {
+  flex: auto;
+  flex-basis: 50%;
+}
+
+ul {
+  list-style-type: none;
+  padding: 20px;
+  margin: 0;
+}
+
+.page-button.selected {
+  border-color: black;
+  border-width: 1px;
+}
+
+input[type='checkbox'] {
+  opacity: 0.7;
+}
+
+.input-light {
+  background-color: white;
+  color: #202020;
+}
+.input-dark {
+  color: #d0d0d0;
+  background-color: #202020;
+}
+
+.page-button.dark {
+  color: #d0d0d0;
+  background-color: #505060;
+}
+.page-button.dark.selected {
+  border-color: #e0e0e0;
+}
+.light {
+  color: #404048;
+  background-color: white;
+}
+
+.dark {
+  background-color: #404048;
+  color: #e0e0e0;
+}
+.page-button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  background-color: #f0f0f0;
+  color: black;
+  text-decoration: none;
+  margin: 2px;
+}
+
+.item-label {
+  display: flex;
+  flex-direction: row;
+}

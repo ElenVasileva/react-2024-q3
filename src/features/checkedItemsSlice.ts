@@ -16,9 +16,11 @@ export const checkedItemsSlice = createSlice({
   reducers: {
     addItem: (state, action: PayloadAction<Person>) => {
       state.value.push(action.payload);
+      console.log(`add, count: ${state.value.length}`);
     },
     removeItem: (state, action: PayloadAction<Person>) => {
       state.value.splice(state.value.indexOf(action.payload), 1);
+      console.log(`remove, count: ${state.value.length}`);
     },
     unselectAll: (state) => {
       state.value.splice(0, state.value.length);
