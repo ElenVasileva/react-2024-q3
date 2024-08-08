@@ -2,10 +2,7 @@ import PageParams from '../types/PageParams';
 import Person from '../types/Person';
 
 const createUrl = (pageParams: PageParams) => {
-  const cardIdUrl = pageParams.selectedCard ? `/${pageParams.selectedCard}` : '/';
-  const currentSearchUrl = pageParams.search ? `?search=${pageParams.search}&` : '?';
-  const currentPageUrl = pageParams.page ? `page=${pageParams.page}` : '';
-  return `${cardIdUrl}${currentSearchUrl}${currentPageUrl}`;
+  return `/${pageParams.page}${pageParams.search ? `/search/${pageParams.search}` : ''}/${pageParams.selectedCard || ''}`;
 };
 
 const createFileContent = (checkedItems: Person[]) => {

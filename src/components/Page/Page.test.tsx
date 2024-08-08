@@ -1,8 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { getFakePageData } from '../../types/PageData';
 import Page from './Page';
-const data = getFakePageData();
+import { getFakePerson } from '../../types/Person';
+
+const data = {
+  results: [getFakePerson('name', 1), getFakePerson('2', 2)],
+  count: 2,
+};
 const pageParams = {
   page: 1,
   search: '',

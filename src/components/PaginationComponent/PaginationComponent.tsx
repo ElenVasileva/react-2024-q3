@@ -1,3 +1,5 @@
+'use client';
+
 import { useContext } from 'react';
 import { createUrl } from '../../helpers/helper';
 import { ThemeContext } from '../../themes/ThemeContext';
