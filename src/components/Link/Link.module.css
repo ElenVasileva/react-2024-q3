@@ -1,0 +1,34 @@
+.link {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.link:hover {
+  border-color: #646cff;
+}
+.link:focus,
+.link:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.dark {
+  color: #d0d0d0;
+  background-color: #505060;
+}
+.dark:hover {
+  color: #d0d0d0;
+  background-color: #505060;
+}
+
+.light {
+  color: black;
+  background-color: #f0f0f0;
+}
+.light:hover {
+  color: black;
+}
