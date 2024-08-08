@@ -12,6 +12,7 @@ const ItemComponent = ({ person, pageParams }: { person: Person; pageParams: Pag
 
   const urlParts = person.url.replace(/\/$/, '').split('/');
   const id = urlParts[urlParts.length - 1];
+  const activeClassName = id === pageParams.selectedCard?.toString() ? 'active' : '';
 
   const checked = () => {
     return (
@@ -32,7 +33,7 @@ const ItemComponent = ({ person, pageParams }: { person: Person; pageParams: Pag
           }}
         />
         <li className="item">
-          <Link href={createUrl({ ...pageParams, selectedCard: +id })}>{person.name}</Link>
+          <Link href={createUrl({ ...pageParams, selectedCard: +id })} className={activeClassName}>{person.name}</Link>
         </li>
       </label>
     </>

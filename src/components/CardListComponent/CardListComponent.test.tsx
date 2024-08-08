@@ -16,7 +16,7 @@ const personList = [getFakePerson('name', 1), getFakePerson('2', 2)];
 test('CardList renders the specified number of cards', async () => {
   render(
     <Provider store={store}>
-        <CardListComponent data={personList} pageParams={{ page: 1, search: '' }} />
+      <CardListComponent data={personList} pageParams={{ page: 1, search: '' }} />
     </Provider>,
   );
   const listItems = await screen.findAllByRole('listitem');

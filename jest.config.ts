@@ -18,17 +18,3 @@ const config: Config = {
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
 export default createJestConfig(config);
-
-// export default {
-//   moduleNameMapper: {
-//     '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js',
-//   },
-//   testEnvironment: 'jsdom',
-//   transform: {
-//     '^.+.tsx?$': ['ts-jest', {}],
-//   },
-//   automock: false,
-//   setupFiles: ['./setupJest.js'],
-//   collectCoverage: true,
-//   collectCoverageFrom: ['src/**/*.{ts,tsx,js,jsx}', '!src/*.d.ts'],
-// };

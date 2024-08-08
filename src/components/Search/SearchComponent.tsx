@@ -30,7 +30,7 @@ const SearchComponent = (props: SearchComponentProps) => {
           autoFocus
         />
       </div>
-      <div className="card">
+      <div className="card search-button-card">
         <LinkComponent
           href={createUrl({ ...props.pageParams, search: searchString, page: 1 })}
           className={className}

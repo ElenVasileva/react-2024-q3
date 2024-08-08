@@ -21,7 +21,7 @@ const Page = ({
     <Providers>
       <SearchComponent pageParams={pageParams} />
       <PaginationComponent entriesCount={data.count} pageParams={pageParams} />
-      <div className="container">
+      <div className="container page">
         <CardListComponent data={data.results} pageParams={pageParams} />
         {!!person && <DetailedItem person={person} pageParams={pageParams} />}
       </div>
