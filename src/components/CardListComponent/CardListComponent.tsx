@@ -1,6 +1,6 @@
-import PageParams from "../../types/PageParams";
-import Person from "../../types/Person";
-import ItemComponent from "../ItemComponent";
+import PageParams from '../../types/PageParams';
+import Person from '../../types/Person';
+import ItemComponent from '../ItemComponent';
 
 const CardListComponent = ({ data, pageParams }: { data: Person[]; pageParams: PageParams }) => {
   const listItems = data.map((person: Person) => {

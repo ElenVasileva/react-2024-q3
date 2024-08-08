@@ -1,3 +1,5 @@
+'use client';
+
 import { useContext, useState } from 'react';
 import { createUrl } from '../../helpers/helper';
 import { ThemeContext } from '../../themes/ThemeContext';
@@ -18,7 +20,7 @@ const SearchComponent = (props: SearchComponentProps) => {
     setSearchString(value);
   };
 
-  const className = `button`;
+  const className = `button search-button`;
 
   return (
     <div className="container">
@@ -30,7 +32,7 @@ const SearchComponent = (props: SearchComponentProps) => {
           autoFocus
         />
       </div>
-      <div className="card">
+      <div className="card search-button-card">
         <LinkComponent
           href={createUrl({ ...props.pageParams, search: searchString, page: 1 })}
           className={className}

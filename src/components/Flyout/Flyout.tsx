@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './Flyout.module.css';
 
 import { useDispatch, useSelector } from 'react-redux';

@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './DetailedItem.module.css';
 
 import Person from '../../types/Person';
