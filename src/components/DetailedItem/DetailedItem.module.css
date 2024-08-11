@@ -1,0 +1,25 @@
+.details {
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 3px;
+  text-align: left;
+}
+
+.header {
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header a {
+  float: right;
+  margin: -20px -10px 0 10px;
+}
+
+.dark {
+  border-color: #d0d0d0;
+}
+.light {
+  border-color: #404048;
+}
