@@ -1,13 +1,9 @@
-import Person, { getFakePerson } from './Person';
+import ListData from './ListData';
+import PageParams from './PageParams';
+import Person from './Person';
 
-export default interface PageData {
-  results: Person[];
-  count: number;
+export interface PageData {
+  person?: Person;
+  data: ListData;
+  pageParams: PageParams;
 }
-
-export const getFakePageData = () => {
-  return {
-    results: [getFakePerson('name', 1), getFakePerson('2', 2)],
-    count: 2,
-  };
-};
