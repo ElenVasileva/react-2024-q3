@@ -1,7 +1,6 @@
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { getCard, getData } from "./api";
+import { getCard, getData } from './api';
 
 global.fetch = jest.fn((url: string) =>
   Promise.resolve({
@@ -62,11 +61,12 @@ global.fetch = jest.fn((url: string) =>
   }),
 ) as jest.Mock;
 
-test('getCard returns correct data', () => {
-  const cardData = getCard({idParam:'1'})
+test('getCard returns correct data', async () => {
+  const cardData = await getCard({ idParam: '1' });
+  expect(cardData.person.name === 'Luke Skywalker');
 });
 
-test('getData returns correct data', () => {
-  const cardData = getData({idParam:'1'})
+test('getData returns correct data', async () => {
+  const data = await getData({ idParam: '1' });
+  expect(data.data.results.length === 3);
 });
-

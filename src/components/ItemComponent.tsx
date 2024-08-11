@@ -4,7 +4,6 @@ import { RootState } from '../store';
 import { addItem, removeItem } from '../features/checkedItemsSlice';
 import PageParams from '../types/PageParams';
 import { createUrl } from '../helpers/helper';
-import { NavLink } from '@remix-run/react';
 
 const ItemComponent = ({ person, pageParams }: { person: Person; pageParams: PageParams }) => {
   const checkedItems: Person[] = useSelector((state: RootState) => state.checkedItems.value);
