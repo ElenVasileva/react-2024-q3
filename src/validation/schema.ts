@@ -8,7 +8,10 @@ const schema: ObjectSchema<InputData> = object({
     .matches(/^[A-Z]/, { message: 'The first letter should be in uppercase' }),
   age: number().required('Age is required').positive('Age should be positive').integer('Age must be an integer').typeError('Age should be a number'),
   email: string().required('Email is required').email(),
-  password: string().required('Required').min(8, 'Must be at least 8 characters'),
+  password: string().required('Required').min(8, 'Must be at least 8 characters')  
+  .test('required', 'Must contain at least 1 number, 1 uppercased letter, 1 lowercased letter, 1 special character', (password:string) => {
+    return /[0-9]/.test(password)&&/[a-z]/.test(password)&&/[A-Z]/.test(password)&&/[\W_]/.test(password);
+  }),
   passwordConfirmation: string()
     .required('Required')
     .oneOf([ref('password')], 'Passwords must match'),

@@ -1,4 +1,4 @@
-import UncontrolledForm from '../components/UncontrolledForm/UncontrolledForm';
+import UncontrolledForm from '../components/Form/UncontrolledForm';
 
 const UncontrolledFormPage = () => {
   return <UncontrolledForm />;

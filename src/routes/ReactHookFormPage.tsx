@@ -1,4 +1,4 @@
-import ReactHookForm from '../components/UncontrolledForm/ReactHookForm';
+import ReactHookForm from '../components/Form/ReactHookForm';
 
 const ReactHookFormPage = () => {
   return <ReactHookForm />;

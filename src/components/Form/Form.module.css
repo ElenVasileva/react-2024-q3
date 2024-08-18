@@ -16,7 +16,7 @@
   margin-top: -10px;
 }
 
-.textField label {
+.textField label, .passwordField label {
   display: block;
   padding-left: 3px;
 }
@@ -25,12 +25,15 @@ label {
   font-size: 1.05em;
 }
 
-.textField {
+.textField, .passwordField {
   height: 80px;
 }
 
-.textField {
-  height: 80px;
+.passwordField .error{  
+  text-wrap: wrap;
+  width: 300px;
+  line-height: 12px;
+  margin-top: -6px;
 }
 
 .genderField {

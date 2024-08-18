@@ -61,7 +61,7 @@ const ReactHookForm = () => {
               <div className={styles.error}>{errors.country?.message}</div>
             </div>
 
-            <div className={styles.textField}>
+            <div className={styles.passwordField}>
               <label htmlFor="password" className={styles.block}>
                 Password
               </label>
