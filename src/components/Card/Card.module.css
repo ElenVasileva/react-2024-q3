@@ -1,0 +1,41 @@
+.card {
+  width: 33%;
+}
+
+@media (width <= 1600px) {
+  .card {
+    width: 50%;
+  }
+}
+
+@media (width <= 900px) {
+  .card {
+    width: 100%;
+  }
+}
+
+.wrapper {
+  border-radius: 8px;
+  height: 370px;
+  padding-bottom: 8px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: #f6f6f6;
+  transition: background-color 3s cubic-bezier(0.69, -0.01, 1, 0.38);
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 600;
+}
+img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.active {
+  background-color: #ffc080;
+}
