@@ -19,7 +19,7 @@ const Home = () => {
       setTimeout(() => {
         dispatch(removeSubmitted());
       }, 3000);
-  }, [submitted]);
+  }, [submitted, dispatch]);
 
   return (
     <div className={styles.container}>
