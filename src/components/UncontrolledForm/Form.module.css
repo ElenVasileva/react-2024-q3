@@ -1,0 +1,97 @@
+.header {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.container {
+  display: inline-flex;
+}
+.container > div {
+  padding: 10px 40px;
+}
+
+.error {
+  color: brown;
+  font-size: 0.9em;
+  margin-top: -10px;
+}
+
+.textField label {
+  display: block;
+  padding-left: 3px;
+}
+
+label {
+  font-size: 1.05em;
+}
+
+.textField {
+  height: 80px;
+}
+
+.textField {
+  height: 80px;
+}
+
+.genderField {
+  height: 130px;
+  margin-top: 20px;
+}
+
+label.gender {
+  display: block;
+  margin-left: -3px;
+}
+
+.acceptField {
+  height: 55px;
+  margin-left: 150px;
+}
+
+.acceptField label {
+  margin-left: 5px;
+}
+
+.form {
+  width: fit-content;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #f8f8f8;
+}
+.button {
+  text-align: center;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+input:not([type]),
+input[type='text'],
+input[type='password'] {
+  width: 250px;
+  padding: 6px 8px;
+  font-size: 1.05em;
+  outline: none;
+  border: 1px solid rgb(240, 240, 240);
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+
+input[type='file'] {
+  padding-bottom: 6px;
+}
